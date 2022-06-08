@@ -61,7 +61,7 @@ const Main = ({navigation}) => {
                     tabBarIcon: ({focused}) => focused
                         ? (
                             <Image
-                                source={require("../../../assets/images/selectHome.png")}
+                                source={require("../../../assets/images/selectmypage.png")}
                                 style={{
                                     width: 20,
                                     height: 20
@@ -69,7 +69,7 @@ const Main = ({navigation}) => {
                         )
                         : (
                             <Image
-                                source={require("../../../assets/images/unselectHome.png")}
+                                source={require("../../../assets/images/unselectmypage.png")}
                                 style={{
                                     width: 20,
                                     height: 20
