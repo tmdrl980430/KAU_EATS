@@ -4,10 +4,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import HomeLogo from './homeLogo';
 import TodayMeal from './mealTable';
+import MealList from './todayMeals';
 
 const HomeScreen = () => {
     
     const [loading, setLoading] = useState(false)
+
 
     if (loading) {
         return (
@@ -20,6 +22,7 @@ const HomeScreen = () => {
             <ScrollView style={styles.container}>
                 <HomeLogo style={styles.logoArea}/>
                 <TodayMeal/>
+                <MealList/>
             </ScrollView>
         )
     }
@@ -31,7 +34,8 @@ const styles = StyleSheet.create({
         backgroudColor: 'white',
         alignItems: 'center',
         justufyContent: 'center'
-    },loading: {
+    },
+    loading: {
         flex: 1,
         backgroundColor: 'white',
         alignItems: 'center',

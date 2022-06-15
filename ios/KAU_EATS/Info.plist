@@ -46,12 +46,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>NotoSansKR-Black.otf</string>
-		<string>LotteMartDream-Bold.ttf</string>
-		<string>LotteMartDream-Light.ttf</string>
-		<string>LotteMartDream-Medium.ttf</string>
-		<string>LotteMartHappy-Bold.ttf</string>
-		<string>LotteMartHappy-Light.ttf</string>
-		<string>LotteMartHappy-Medium.ttf</string>
 		<string>NotoSansKR-Bold.otf</string>
 		<string>NotoSansKR-Light.otf</string>
 		<string>NotoSansKR-Medium.otf</string>

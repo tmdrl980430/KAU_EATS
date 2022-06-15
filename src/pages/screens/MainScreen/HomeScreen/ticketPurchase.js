@@ -1,20 +1,13 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import Carousel from 'react-native-snap-carousel';
+import MealList from './todayMeals';
 
-const MealList = () => {
-
-    const _renderItem = ({item, index}) => {
-        return (<View>
-            <Text>{item.title}</Text>
-        </View>)
-
-    }
+const TicketPurchase = () => {
 
     return (
-        <View>
-            <Text>캐러셀 부분</Text>
+        <View style={styles.titleArea}>
+            <Text style={styles.todayMealText}>식권 구매하기</Text>
         </View>
     )
 }
@@ -24,17 +17,13 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flexDirection: "row",
         alignItems: 'center',
-        marginTop: hp('50%')
+        marginTop: hp('3%')
     },
     todayMealText: {
         fontSize: 20,
         fontFamily: 'SFPRODISPLAY-BOLD',
         color: '#12121D'
-    },
-    weekMeal: {
-        fontSize: 12,
-        alignItems: "center"
     }
 })
 
-export default MealList;
+export default TicketPurchase ;
