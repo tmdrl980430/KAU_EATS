@@ -8,6 +8,7 @@ import {
     Button,
     TouchableOpacity
 } from 'react-native';
+import axios from 'axios';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import AuthForm from "./SignUpAuthform";
 import SignUpHeader from "./Header";
@@ -16,7 +17,55 @@ import SignUpBtn from "./SignUpBtn";
 
 const SignUp = ({navigation}) => {
 
-    const [loading, setLoading] = useState(false)
+    const [signUp, setSignUp] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordCheck, setPasswordCheck] = useState('');
+
+    const [duplicateId, setduplicateId] = useState(false);
+    const [formatPassword, setformatPassword] = useState(true); //비밀번호 형식
+    const [samePassword, setsamePassword] = useState(true); //비밀번호 일치
+
+
+
+    const retrieveDuplicateId = async () => {
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setSignUp(null);
+
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+
+            if (password != passwordCheck) {
+                setsamePassword(false);
+            } else if (password == passwordCheck && id != '' && password != ''){
+                setsamePassword(true);
+                const response = await axios.get(
+                    `http://3.38.35.114/auth/duplicate-id?id=${id}`
+                );
+                navigation.navigate('SignUpLast', {id: {id} , password: {password}});
+            }
+            // 데이터는 response.data.code 안에 들어있다.
+            setSignUp(response.data.code);
+        } catch (e) {
+            setError(e);
+        }
+        // loading 끄기
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        console.log(id),
+        console.log(password),
+        console.log(passwordCheck)
+    }, [id, password, passwordCheck])
+
+    const onPressNextBtn = () => {
+        retrieveDuplicateId();
+    }
 
     if (loading) {
         return (
@@ -34,11 +83,16 @@ const SignUp = ({navigation}) => {
                     <Introduction/>
                 </View>
                 <View style={styles.formArea}>
-                    <AuthForm style={styles.formArea}/>
+                    <AuthForm
+                        style={styles.formArea}
+                        setId={setId}
+                        setPassword={setPassword}
+                        setPasswordCheck={setPasswordCheck}
+                        setduplicateId={duplicateId}
+                        setformatPassword={formatPassword}
+                        setsamePassword={samePassword}/>
                 </View>
-                <TouchableOpacity
-                    style={styles.loginBtn}
-                    onPress={() => navigation.navigate('SignUpLast')}>
+                <TouchableOpacity style={styles.loginBtn} onPress={onPressNextBtn}>
                     <SignUpBtn/>
                 </TouchableOpacity>
             </ScrollView>

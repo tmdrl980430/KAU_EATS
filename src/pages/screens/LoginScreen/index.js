@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
     View,
     StyleSheet,
@@ -8,15 +8,63 @@ import {
     Button,
     TouchableOpacity
 } from 'react-native';
+import axios from 'axios';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import AuthForm from "./LoginAuthform";
 import LoginHeader from "./Header";
 import Introduction from "./introduction";
 import LoginBtn from "./LoginBtn";
 
-const Login = ({navigation}) => {
+const Login = ({navigation} , props) => {
 
     const [loading, setLoading] = useState(false)
+    const [login, setLogin] = useState('');
+    const [error, setError] = useState(null);
+
+    const [emailInput, setEmailInput] = useState("")
+    const [passwordInput, setPasswordInput] = useState("")
+
+    useEffect(() => {
+        console.log(emailInput),
+        console.log(passwordInput),
+        console.log(login)
+    }, [emailInput, passwordInput, login])
+
+    const fetchLogin = async () => {
+        console.log('fetchLogin')
+
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setLogin(null);
+
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+
+            const response = await axios.post(`http://3.38.35.114/auth/login`, {
+                id: emailInput,
+                password: passwordInput
+            }).then((response) => {
+                console.log(response);
+                props.setIsLogin(true)
+            }).catch((error) => {
+                console.log(error);
+            });
+            // 데이터는 response.data.code 안에 들어있다.
+            setLogin(response.data.code);
+
+        } catch (e) {
+            setError(e);
+        }
+        // loading 끄기
+        setLoading(false);
+    };
+
+    const onPressLoginBtn = () => {
+        console.log('onPressLoginBtn')
+
+        fetchLogin();
+    }
 
     if (loading) {
         return (
@@ -34,11 +82,14 @@ const Login = ({navigation}) => {
                     <Introduction/>
                 </View>
                 <View style={styles.formArea}>
-                    <AuthForm style={styles.formArea}/>
+                    <AuthForm
+                        style={styles.formArea}
+                        setEmailInput={setEmailInput}
+                        setPasswordInput={setPasswordInput}/>
                 </View>
                 <TouchableOpacity
                     style={styles.loginBtn}
-                    onPress={() => navigation.navigate('Main')}>
+                    onPress={onPressLoginBtn}>
                     <LoginBtn/>
                 </TouchableOpacity>
                 <View style={styles.signuptextArea}>

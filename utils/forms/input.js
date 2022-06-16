@@ -31,17 +31,21 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         paddingStart: 16,
         paddingTop: 16,
-        paddingBottom: 16 ,
-        marginTop: hp('1%')
+        paddingBottom: 16,
+        marginTop: hp('1%'),
+        fontFamily: 'NotoSansKR-Thin',
+        fontSize : 12
     },
     textFormRevised: {
         borderColor: '#FF3D3D',
         borderRadius: 20,
         borderWidth: 1,
-        paddingStart: 16,
+        paddingStart: 14,
         paddingTop: 16,
-        paddingBottom: 16 ,
-        marginTop: hp('1%')
+        paddingBottom: 16,
+        marginTop: hp('1%'),
+        fontFamily: 'NotoSansKR-Thin',
+        fontSize : 12
     },
     textSignUpInput: {
         borderColor: '#ECF1F6',
@@ -49,8 +53,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         paddingStart: 16,
         paddingTop: 16,
-        paddingBottom: 16 ,
-        marginTop: hp('1%')
+        paddingBottom: 16,
+        marginTop: hp('1%'),
+        fontFamily: 'NotoSansKR-Thin',
+        fontSize : 12
     }
 })
 

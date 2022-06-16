@@ -32,7 +32,8 @@ const Navigation = () => {
                                 screenOptions={{
                                     headerShown: false
                                 }}>
-                                <Stack.Screen name="Login" component={Login}></Stack.Screen>
+                                <Stack.Screen name="Login" component={Login}
+                                setIsLogin={setIsLogin}></Stack.Screen>
                                 <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
                                 <Stack.Screen name="SignUpLast" component={SignUpLast}></Stack.Screen>
                             </Stack.Group>

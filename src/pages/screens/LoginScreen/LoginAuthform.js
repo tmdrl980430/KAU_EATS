@@ -3,7 +3,7 @@ import {View, Image, Text, TextInput, StyleSheet} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Input from "../../../../utils/forms/input";
 
-const AuthForm = () => {
+const AuthForm = (props) => {
     const [inputState, setInputState] = useState({
         type: 'Login',
         action: 'Login',
@@ -15,27 +15,24 @@ const AuthForm = () => {
         valid: false
     });
 
-    const [emailInput, setEmailInput] = useState("")
-    const [passwordInput, setPasswordInput] = useState("")
-
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>아이디</Text>
             <Input
-                value={emailInput}
+                value={props.emailInput}
                 type={"textinput"}
                 autoCapitalize={'none'}
                 keyboardType={'email-address'}
                 placeholder='이메일을 입력해주세요.'
-                onChangeText={text => setEmailInput(text)}/>
+                onChangeText={text => props.setEmailInput(text)}/>
             <Text style={styles.titleText}>비밀번호</Text>
             <Input
-                value={passwordInput}
+                value={props.passwordInput}
                 type={"textinput"}
                 autoCapitalize={'none'}
                 keyboardType={'default'}
                 secureTextEntry={true}
-                onChangeText={text => setPasswordInput(text)}
+                onChangeText={text => props.setPasswordInput(text)}
                 placeholder='비밀번호를 입력해주세요.'/>
         </View>
     )
@@ -45,15 +42,6 @@ const AuthForm = () => {
 const styles = StyleSheet.create({
     container: {
         marginTop: hp('2%')
-    },
-    textForm: {
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#DBDBDB',
-        width: '100%',
-        height: hp('5%'),
-        paddingLeft: 5,
-        paddingRight: 5,
-        marginBottom: 5
     },
     titleText: {
         fontFamily: 'NotoSansKR-Bold',

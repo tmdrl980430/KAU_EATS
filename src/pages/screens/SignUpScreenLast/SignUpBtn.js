@@ -6,9 +6,9 @@ const SignUpBtn = () => {
 
     return (
         <View style={styles.buttonArea}>
-            <TouchableOpacity style={styles.button}>
+            <View style={styles.button}>
                 <Text style={styles.buttonTitle}>가입하기</Text>
-            </TouchableOpacity>
+            </View>
         </View>
     )
 }
